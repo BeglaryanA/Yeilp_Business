@@ -4,14 +4,15 @@ import { CreateContactDto } from "./create-contact.dto";
 export class CreateBusinessDto {
     id : string;
     name: string;
+    password: string;
     category: string;
     description: string;
-    feedback : string;
+    feedback? : string;
     opening: Date;
     closing: Date;
-    rate: number;
     address: CreateAddressDto;
     contact: CreateContactDto;
-}  
+    rate?: number;
+}
 
 export { CreateAddressDto, CreateContactDto };
