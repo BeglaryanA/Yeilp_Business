@@ -1,3 +1,4 @@
+import { Optional } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import { AddressEntity } from './address.entity';
 import { ContactEntity } from './contact.entity';
@@ -12,10 +13,14 @@ export class BusinessEntity {
   name: string;
 
   @Column()
-  category: string;
+  password: string;
 
   @Column()
-  feedback: string;
+  category: string;
+
+  @Column({ nullable: true })
+  @Optional()
+  feedback?: string;
 
   @Column()
   description: string;
@@ -26,8 +31,9 @@ export class BusinessEntity {
   @Column()
   closing: Date;
 
-  @Column()
-  rate: number;
+  @Column({ nullable: true })
+  @Optional()
+  rate?: number;
 
   @OneToOne(() => AddressEntity, { "cascade": true })
   @JoinColumn()
@@ -39,7 +45,7 @@ export class BusinessEntity {
 
   constructor() {
     if (!this.id) {
-        this.id =  uuidv4();
+      this.id = uuidv4();
     }
   }
 }
